@@ -37,14 +37,6 @@ library(DataComputing)
 ## Loading required package: ggplot2
 ```
 
-**Manual implementation of K-means**
-
-1. Randomly select rows to be centroids
-2. Measure the distance of each datapoint to centroid and see which centroid it is the closest o
-3. Repeat the process for all datapoints
-4. Update centroid
-5. Repeat Steps 2 -> 4
-
 
 
 ```r
@@ -109,7 +101,25 @@ my_kmeans(X, 3)
 ### Compare with the real dataset
 
 
+```r
+f1 = iris %>%
+  group_by(Species) %>%
+  dplyr::summarize(Mean_Sepal.Length = mean(Sepal.Length, na.rm=TRUE))
 
+f2 = iris %>%
+  group_by(Species) %>%
+  dplyr::summarize(Mean_Sepal.Width = mean(Sepal.Width, na.rm=TRUE))
+
+f3 = iris %>%
+  group_by(Species) %>%
+  dplyr::summarize(Mean_Petal.Length = mean(Petal.Length, na.rm=TRUE))
+
+f4 = iris %>%
+  group_by(Species) %>%
+  dplyr::summarize(Mean_Petal.Width = mean(Petal.Width, na.rm=TRUE))
+
+cbind(f1, f2[, 2], f3[, 2], f4[, 2])
+```
 
 ```
 ##      Species Mean_Sepal.Length Mean_Sepal.Width Mean_Petal.Length
